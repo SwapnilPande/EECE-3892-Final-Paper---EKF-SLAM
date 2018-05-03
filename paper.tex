@@ -60,6 +60,7 @@
 
 %---------------------------------
 % Manually-included packages
+\usepackage{amsmath}
 \usepackage{graphicx}
 
 
@@ -590,27 +591,124 @@ function may return the vector \texttt{(1.03, 0.99)} as a result of the applied 
 
 Once these measurements are collected, the \texttt{EKFSlammer} class is instantiated. This class 
 represents the robot's predicted measurements by the Extended Kalman Filter. It also represents 
-the EKF's entire algorithmic complexity. The a priori and the a posteriori estimation steps are 
-performed through several of the \texttt{EKFSlammer}'s class methods.
+the EKF's entire algorithmic complexity. The \textit{a priori} and the \textit{a posteriori} estimation steps are 
+performed through several of the \texttt{EKFSlammer}'s class methods. 
+
+\texttt{EKFSlammer} stores the robot's and environment's state $x_t$ in a \texttt{VectorXd}. The
+perceived position and orientation of the robot, as well as the location of the obstacles in the map, 
+can be expressed informally as 
+\begin{equation*}
+ x_t = \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
+        \vec{s} \\
+        \theta \\
+        \vec{i}_1 \\
+        \vec{i}_2 \\
+        \vdots
+        \end{IEEEeqnarraybox*}\right],
+\end{equation*}
+where $\vec{s}$ is the robot's location with respect to the Aruco Marker (the arbitrarily-defined
+origin) and $\vec{i}_n$ is the location of the $i$\textsuperscript{th} obstacle. The vectors represented
+in code for measurement updates are the Kinect measurement vector and the gyroscope measurement vector.
+The Kinect senses all obstacles in the environment; therefore, its measurement vector for all $i$ obstacles 
+is expressed as
+\begin{equation*}
+ z_{t,K} = \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
+           r_1 \\
+           \theta_1 \\
+           r_2 \\
+           \theta_2 \\
+           \vdots \\
+           r_i \\
+           \theta_i
+           \end{IEEEeqnarraybox*}\right] + \vec{\epsilon_t},
+\end{equation*}
+and the gyroscope measurement vector can be expressed as 
+\begin{equation*}
+ z_{t,g} = \omega_t + \epsilon_t,
+\end{equation*}
+where $\omega_t$ is the angular velocity of the robot, and $\vec{\epsilon_t}$ and $\epsilon_t$ are the 
+normally-distributed noise factors for each sensor.
 
 To step through a frame with a set timestep, the \texttt{ekfUpdate()} function is called. Here, the main 
 method passes its control input, the perceived obstacles (from the Kinect observation), the measured 
 acceleration, the measured encoder values, the measured gyroscope values, and the measured Aruco 
 Marker location. \texttt{ekfUpdate} then calls all other relevant EKF functions. 
 
-First, to generate the a priori estimate, the \texttt{motionModelUpdate()} method is called by 
+First, to generate the \textit{a priori} estimate, the \texttt{motionModelUpdate()} method is called by 
 \texttt{ekfUpdate}. Its parameters are the timestep for the robot and its control parameters, in 
 the form of a forward velocity and an angular velocity (i.e. the \texttt{controlIn} struct; see 
 \texttt{Utils.h}). The \texttt{motionModelUpdate} will recalculate the estimated state of the 
 robot, given the control input and given the known uncertainties of the robot's actuators 
 (i.e. the robot's wheels, since this robot can only move). 
 
-Second, to generate the a posteriori estimate, the \texttt{ekfUpdate} function calls the 
+The motion model update for the \textit{a priori} estimate is defined with the following relation, given
+the robot's control sequence straight-line velocity $v_t$ and angular velocity $\omega_t$:
+\begin{equation*}
+\left[\begin{IEEEeqnarraybox*}[][c]{,c,}
+           x_{t+1} \\
+           y_{t+1} \\
+           \theta_{t+1}
+           \end{IEEEeqnarraybox*}\right] = 
+           \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
+           x_{t} \\
+           y_{t} \\
+           \theta_{t}
+           \end{IEEEeqnarraybox*}\right] + 
+           \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
+           -v_t/\omega_t \sin(\theta_t) + v_t/\omega_t \sin(\theta_t + \omega_t \Delta t)\\
+           v_t/\omega_t \cos(\theta_t) - v_t/\omega_t\cos(\theta_t + \omega_t \Delta t)\\
+           \omega_t \Delta t
+           \end{IEEEeqnarraybox*}\right]
+\end{equation*}
+If covariance of the current state is $\Sigma_t$, then the Extended Kalman Filter approximates the 
+covariance of the new \textit{a priori} state $\widehat{\Sigma_{t}}$ to be 
+\begin{equation*}
+ \widehat{\Sigma_t} = G_t \Sigma_t G_t^T + R_t,
+\end{equation*}
+where $G_t$ is the Jacobian of the robot's motion, and $R_t$ is a noise factor. Formally,
+\begin{equation*}
+G_t = \left[\begin{IEEEeqnarraybox*}[][c]{,c/c,}
+            G^x_t & \textbf{0} \\
+            \textbf{0} & I_{2N \times 2N}
+           \end{IEEEeqnarraybox*}\right],
+\end{equation*}
+where $N$ is the number of obstacles (the quantity $2N$ above is because there are two coordinates for
+each obstacle) and
+\begin{equation*}
+ G^x_t = \left[\begin{IEEEeqnarraybox*}[][c]{,c/c/c,}
+            1\,   &  \, 0 \,  &  -v_t/\omega_t \cos(\theta_t) + v_t/\omega_t \sin(\theta_t + \omega_t \Delta t) \\
+            0\,   &  \, 1 \,  &  -v_t/\omega_t \sin(\theta_t) + v_t/\omega_t \sin(\theta_t + \omega_t \Delta t) \\
+            0\,   &  \, 0 \,  &   1
+           \end{IEEEeqnarraybox*}\right].
+\end{equation*}
+
+Second, to generate the \textit{a posteriori} estimate, the \texttt{ekfUpdate} function calls the 
 \texttt{ekfCorrectionStep}. The \texttt{ekfCorrectionStep} in turn integrates all of the sensor 
 data it is passed to create a new model for the robot's and the obstacles' states. It does this 
 by stepping through the Extended Kalman Filter algorithm's correction step with each set of 
 sensor data. For example, \texttt{ekfCorrectionStep} will call \texttt{kinectUpdate} and pass the 
 data from the Kinect sensor to correct the positions of the obstacles. 
+
+The measurement update must calculate certain values to integrate the sensor data into the estimated
+state, such as the Kalman gain $K_t$:
+\begin{equation*}
+ K_t = \widehat{\Sigma_t} H_t^T (H_t \widehat{\Sigma_t} H_t^T + Q_t)^{-1},
+\end{equation*}
+where $H_t$ is the Jacobian of each predicted sensor measurement.
+
+The Kalman gain is a weight for the updated state and covariance to depend on the predicted state 
+verses the observed state. The updated state is
+\begin{equation*}
+ x_{t+1} = \hat{x_t} + K_t(z_t-h(\hat{x_t})),
+\end{equation*}
+and the updated covariance is 
+\begin{equation*}
+ \Sigma_{t+1} = (I - K_t H_t) \widehat{\Sigma_t}.
+\end{equation*}
+This \textit{a posteriori} correction step is performed for each set of sensor data to get an accurate
+value for the mean and covariance of the new state.
+
+
 
 
 
