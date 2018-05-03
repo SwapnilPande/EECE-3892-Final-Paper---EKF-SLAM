@@ -1,14 +1,15 @@
 
-%% bare_jrnl.tex
+%% bare_jrnl_compsoc.tex
 %% V1.4b
 %% 2015/08/26
 %% by Michael Shell
-%% see http://www.michaelshell.org/
+%% See:
+%% http://www.michaelshell.org/
 %% for current contact information.
 %%
 %% This is a skeleton file demonstrating the use of IEEEtran.cls
 %% (requires IEEEtran.cls version 1.8b or later) with an IEEE
-%% journal paper.
+%% Computer Society journal paper.
 %%
 %% Support sites:
 %% http://www.michaelshell.org/tex/ieeetran/
@@ -49,19 +50,11 @@
 % http://www.michaelshell.org/tex/testflow/
 
 
-
-\documentclass[journal]{IEEEtran}
+\documentclass[10pt,journal,compsoc]{IEEEtran}
 %
 % If IEEEtran.cls has not been installed into the LaTeX system files,
 % manually specify the path to it like:
-% \documentclass[journal]{../sty/IEEEtran}
-
-
-
-%---------------------------------
-% Manually-included packages
-\usepackage{amsmath}
-\usepackage{graphicx}
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
 
 
 
@@ -96,7 +89,14 @@
 
 % *** CITATION PACKAGES ***
 %
-%\usepackage{cite}
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of the IEEE. Loading the cite package will
@@ -111,7 +111,15 @@
 % The latest version can be obtained at:
 % http://www.ctan.org/pkg/cite
 % The documentation is contained in the cite.sty file itself.
-
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later. Note also the use of a CLASSOPTION conditional provided by
+% IEEEtran.cls V1.7 and later.
 
 
 
@@ -156,6 +164,7 @@
 %
 % You can find documentation about the pdfTeX application at:
 % http://www.tug.org/applications/pdftex
+
 
 
 
@@ -222,7 +231,7 @@
 
 % *** SUBFIGURE PACKAGES ***
 %\ifCLASSOPTIONcompsoc
-%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
 %\else
 %  \usepackage[caption=false,font=footnotesize]{subfig}
 %\fi
@@ -235,10 +244,10 @@
 % and invoke subfig.sty's "caption=false" package option (available since
 % subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
 % handling of captions.
-% Note that the Computer Society format requires a larger sans serif font
-% than the serif footnote size font used in traditional IEEE formatting
-% and thus the need to invoke different subfig.sty package options depending
-% on whether compsoc mode has been enabled.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
 %
 % The latest version and documentation of subfig.sty can be obtained at:
 % http://www.ctan.org/pkg/subfig
@@ -346,6 +355,7 @@
 
 
 
+
 % *** Do not adjust lengths that control margins, column widths, etc. ***
 % *** Do not use packages that alter fonts (such as pslatex).         ***
 % There should be no need to do such things with IEEEtran.cls V1.6 and later.
@@ -365,7 +375,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Simulataneous Robot Localization and \\Environment Mapping with \\Simulated Sensor Measurements}
+\title{Bare Demo of IEEEtran.cls for\\ IEEE Computer Society Journals}
 %
 %
 % author names and IEEE memberships
@@ -376,16 +386,30 @@
 % a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
 % was not built to handle multiple paragraphs
 %
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc 
+% journal papers have the author affiliations above the "Manuscript
+% received ..."  text while in non-compsoc journals this is reversed. Sigh.
 
-\author{Swapnil~Pande
-        and~Joshua~Petrin,
-        ~\IEEEmembership{EECE~3892-04,~Dr.~Richard~Alan~Peters}% <-this % stops a space
-%\thanks{M. Shell was with the Department
-%of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
-%GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}% <-this % stops a space
-%\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
-%\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}
-}
+\author{Michael~Shell,~\IEEEmembership{Member,~IEEE,}
+        John~Doe,~\IEEEmembership{Fellow,~OSA,}
+        and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Shell was with the Department
+of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
+GA, 30332.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: see http://www.michaelshell.org/contact.html
+\IEEEcompsocthanksitem J. Doe and J. Doe are with Anonymous University.}% <-this % stops an unwanted space
+\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}}
 
 % note the % following the last \IEEEmembership and also \thanks - 
 % these prevent an unwanted space from occurring between the last author name
@@ -408,8 +432,8 @@
 
 
 % The paper headers
-\markboth{}%
-{}
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -420,12 +444,19 @@
 
 
 
-
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
 % If you want to put a publisher's ID mark on the page you can do it like
 % this:
 %\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
 % Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark.
+% column for its text to clear the IEEEpubid mark (Computer Society jorunal
+% papers don't need this extra clearance.)
 
 
 
@@ -434,23 +465,36 @@
 
 
 
-
-% make the title area
-\maketitle
-
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
+\IEEEtitleabstractindextext{%
 \begin{abstract}
 The abstract goes here.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
-%\begin{IEEEkeywords}
-%IEEE, IEEEtran, journal, \LaTeX, paper, template.
-%\end{IEEEkeywords}
+\begin{IEEEkeywords}
+Computer Society, IEEE, IEEEtran, journal, \LaTeX, paper, template.
+\end{IEEEkeywords}}
 
 
+% make the title area
+\maketitle
 
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
+% or transmag modes are not selected <OR> if conference mode is selected 
+% - because all conference papers position the abstract like regular
+% papers do.
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc or transmag under a non-conference mode.
 
 
 
@@ -466,9 +510,20 @@ The abstract goes here.
 
 
 
-\section{Introduction}
+\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+% Computer Society journal (but not conference!) papers do something unusual
+% with the very first section heading (almost always called "Introduction").
+% They place it ABOVE the main text! IEEEtran.cls does not automatically do
+% this for you, but you can achieve this effect with the provided
+% \IEEEraisesectionheading{} command. Note the need to keep any \label that
+% is to refer to the section immediately after \section in the above as
+% \IEEEraisesectionheading puts \section within a raised box.
+
+
+
+
 % The very first letter is a 2 line initial drop letter followed
-% by the rest of the first word in caps.
+% by the rest of the first word in caps (small caps for compsoc).
 % 
 % form to use if the first word consists of a single letter:
 % \IEEEPARstart{A}{demo} file is ....
@@ -482,292 +537,25 @@ The abstract goes here.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{F}{or} mobile robots, self-localization is extremely important. 
-A robot must know its current state to properly perform its duties and maintain its operation. 
-However, localization is non-trivial due to inherent inaccuracies in actuators and sensor 
-systems, as well as non-ideal environments, which introduce additional errors. Robotic mapping of unknown 
-environments is equally important and poses similar problems as localization. Given that 
-the robot location is known, it is difficult to build an accurate map of the environment 
-due to noisy sensor measurements. 
+\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
+for IEEE Computer Society journal papers produced under \LaTeX\ using
+IEEEtran.cls version 1.8b and later.
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+I wish you the best of success.
 
-Mapping and localization are complementary problems. Localization depends on having an 
-accurate map of the environment to which to compare sensor measurements. Mapping relies 
-on exactly knowing the robot location in order to accurately place features on a map. 
-However, in most robotic applications, neither the precise location of a robot nor a 
-map of the environment are known. 
+\hfill mds
+ 
+\hfill August 26, 2015
 
-In order to address this problem, Simulataneous Localization and Mapping (SLAM) techniques 
-have been developed, which rely on probabilistic methods to build probability 
-distributions of expected positions of features and the robot in a map. SLAM algorithms 
-have a vast number of potential applications. For instance, they have been used to develop 
-drone and land-based robotic systems capable of mapping disaster zones 
-\cite{drone-response, mapping-disaster-areas}. They are being used in autonomous cars to 
-safely navigate traffic. Also, they have been used to build volumetric maps of complex mines
-\cite{6d-mining-slam}.
+\subsection{Subsection Heading Here}
+Subsection text here.
 
-There are three main paradigms for solving the SLAM problem: The Kalman Filter, the Particle 
-Filter, and Graph-based solutions. The Kalman Filter is computationally the least intensive 
-of these techniques, as it parameterizes the distributions, assuming that the robot pose and landmark positions follow a Gaussian distribution. The Particle Filter utilizes Monte Carlo techniques 
-to estimate the state of the robot. Graph-based solutions assume the objects around the robot 
-can be approximated to a course grid landscape. \cite{prob-robots}
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
 
-This project explores the Kalman Filter and its extension, the Extended Kalman Filter (EKF), 
-for running a SLAM simulation. The authors believe this is best for practical application 
-because most robots can implement the EKF with relative computational ease. 
-
-The objective of this project was to apply SLAM algorithms to build autonomous capabilities 
-for a robot designed to compete in the NASA Robotic Mining Competition. The robot is 
-required to mine a subsurface icy-simulant (gravel) in a Martian-like environment and deposit 
-it into a collector bin. The robot’s performance is scored based on the amount of simulant 
-collected within a 10 minute period in addition to performance criteria such as efficiency 
-mass, energy consumption, communication bandwidth usage, and dust kickup during the mining 
-operation.
-
-The competition field is a 7.38m x 3.88 m rectangle as shown in Figure \ref{fig:playing-field}. 
-The robot begins the match in the start zone with an unknown position and orientation and must 
-traverse the obstacle area to the mining area to collect the gravel. The gravel must be 
-returned to the collector located adjacent to be counted towards the score of the match. The 
-obstacle area will contain three obstacles, randomly placed in the zone. The diameter of each 
-obstacle may range from 10-30 cm and the mass may range from 3-10 kg. A target or beacon may 
-be placed on the collector bin as a landmark for localizing the robot. 
-
-\begin{figure*}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/playing-field.png}
-\caption{Diagram of competition field \cite{nasa-rmc-rules}}
-\label{fig:playing-field}
-\end{figure*}
-
-The robot is driven by 4 wheels, each with an independent drive motor and encoder. Due to 
-design constraints, the robot is not capable of traversing the obstacles. The robot will be 
-equipped with the following sensors:
-
-\begin{itemize}
- \item A Microsoft Kinect to map the environment
- \item A camera with software capable of determining the location of a fiducial marker
- \item An Inertial Measurement Unit to estimate pose of the robot
-\end{itemize}
-
-The autonomy algorithm must be capable of the following tasks:
-
-\begin{enumerate}
- \item Determining the initial pose of the robot based on data collected from the environment
- \item Traversing the obstacle zone while avoiding obstacles. 
- \item Determining when the robot has reached the mining zone and collecting gravel.
- \item Returning to the start area and depositing the gravel in the collector bin
- \item Repeating the mining process multiple times to maximize the gravel collected while 
- avoiding holes created from other mining runs.
-\end{enumerate}
-
-For the purpose of this project, the scope of the challenge was limited to localizing the robot
-and determine the location of obstacles to avoid. It is assumed that a path planning algorithm 
-will be capable of providing control inputs to optimize the path of the robot. This objective is 
-achievable through the application of a SLAM algorithm.
-
-
-
-\section{Methods and Procedures}
-
-The simulation for the EKF SLAM algorithm is demonstrated through an abstract robot which 
-can sense the two-dimensional environment through multiple types of sensors. To 
-simulate the NASA RMC robot, the robot can sense the state of itself and the environment 
-obstacles through multiple abstracted types of sensors, including:
-
-\begin{itemize}
- \item A Microsoft Kinect, which returns a range-bearing measurment to all obstacles.
- \item A gyroscope, which can determine the robot’s angular orientation relative to its previous frame.
- \item A camera capable of determining the position of a fiducial marker placed on the collector bin.
- \item Encoders, which can determine the robot’s location relative to the previous frame. 
-\end{itemize}
-
-The Robot class (in Robot.h) represents the actual position of the robot inside its environment. 
-From here, the robot can make ``measurements'' with respect to its various sensors. These 
-measurements, which can be called from methods such as \texttt{getGyroMeasurement()} and 
-\texttt{getArucoMeasurement()}, simply return the respective quantities the sensor is trying to 
-measure, plus zero-mean gaussian noise with a preset standard deviation.  For instance, when the 
-robot calls to its function \texttt{getArucoMeasurement()} while located at \texttt{(1, 1)}, the 
-function may return the vector \texttt{(1.03, 0.99)} as a result of the applied sensor noise. The standard deviations were determined by collecting measurement samples from the various sensors and generating the sampling distribution.
-
-Once these measurements are collected, the \texttt{EKFSlammer} class is instantiated. This class 
-represents the robot's predicted measurements by the Extended Kalman Filter. It also represents 
-the EKF's entire algorithmic complexity. The \textit{a priori} and the \textit{a posteriori} estimation steps are 
-performed through several of the \texttt{EKFSlammer}'s class methods. 
-
-\texttt{EKFSlammer} stores the robot's and environment's state $x_t$ in a \texttt{VectorXd}. The
-perceived position and orientation of the robot, as well as the location of the obstacles in the map, 
-can be expressed informally as 
-\begin{equation*}
- x_t = \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
-        \vec{s} \\
-        \theta \\
-        \vec{m}_1x \\
-        \vec{m}_1y \\
-        \vdots
-        \end{IEEEeqnarraybox*}\right],
-\end{equation*}
-where $\vec{s}$ is the robot's location with respect to the Aruco Marker (the arbitrarily-defined
-origin) and $\vec{m}_i$ is the location of the $i$\textsuperscript{th} obstacle. The vectors represented
-in code for measurement updates are the Kinect measurement vector and the gyroscope measurement vector.
-The Kinect senses all obstacles in the environment; therefore, its measurement vector for all $i$ obstacles 
-is expressed as
-\begin{equation*}
- z_{t,K} = \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
-           r_1 \\
-           \theta_1 \\
-           r_2 \\
-           \theta_2 \\
-           \vdots \\
-           r_i \\
-           \theta_i
-           \end{IEEEeqnarraybox*}\right] + \vec{\epsilon_t},
-\end{equation*}
-and the gyroscope measurement vector can be expressed as 
-\begin{equation*}
- z_{t,g} = \omega_t + \epsilon_t,
-\end{equation*}
-where $\omega_t$ is the angular velocity of the robot, and $\vec{\epsilon_t}$ and $\epsilon_t$ are the 
-normally-distributed noise factors for each sensor.
-
-To step through a frame with a set timestep, the \texttt{ekfUpdate()} function is called. Here, the main 
-method passes its control input, the perceived obstacles (from the Kinect observation), the measured 
-acceleration, the measured encoder values, the measured gyroscope values, and the measured Aruco 
-Marker location. \texttt{ekfUpdate} then calls all other relevant EKF functions. 
-
-First, to generate the \textit{a priori} estimate, the \texttt{motionModelUpdate()} method is called by 
-\texttt{ekfUpdate}. Its parameters are the timestep for the robot and its control parameters, in 
-the form of a forward velocity and an angular velocity (i.e. the \texttt{controlIn} struct; see 
-\texttt{Utils.h}). The \texttt{motionModelUpdate} will recalculate the estimated state of the 
-robot, given the control input and given the known uncertainties of the robot's actuators 
-(i.e. the robot's wheels, since this robot can only move). 
-
-The motion model update for the \textit{a priori} estimate is defined with the following relation, given
-the robot's control sequence straight-line velocity $v_t$ and angular velocity $\omega_t$:
-\begin{equation*}
-\left[\begin{IEEEeqnarraybox*}[][c]{,c,}
-           x_{t+1} \\
-           y_{t+1} \\
-           \theta_{t+1}
-           \end{IEEEeqnarraybox*}\right] = 
-           \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
-           x_{t} \\
-           y_{t} \\
-           \theta_{t}
-           \end{IEEEeqnarraybox*}\right] + 
-           \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
-           -v_t/\omega_t \sin(\theta_t) + v_t/\omega_t \sin(\theta_t + \omega_t \Delta t)\\
-           v_t/\omega_t \cos(\theta_t) - v_t/\omega_t\cos(\theta_t + \omega_t \Delta t)\\
-           \omega_t \Delta t
-           \end{IEEEeqnarraybox*}\right]
-\end{equation*}
-If covariance of the current state is $\Sigma_t$, then the Extended Kalman Filter approximates the 
-covariance of the new \textit{a priori} state $\widehat{\Sigma_{t}}$ to be 
-\begin{equation*}
- \widehat{\Sigma_t} = G_t \Sigma_t G_t^T + R_t,
-\end{equation*}
-where $G_t$ is the Jacobian of the robot's motion, and $R_t$ is a noise factor \cite{prob-robots}. Formally,
-\begin{equation*}
-G_t = \left[\begin{IEEEeqnarraybox*}[][c]{,c/c,}
-            G^x_t & \textbf{0} \\
-            \textbf{0} & I_{2N \times 2N}
-           \end{IEEEeqnarraybox*}\right],
-\end{equation*}
-where $N$ is the number of obstacles (the quantity $2N$ above is because there are two coordinates for
-each obstacle) and
-\begin{equation*}
- G^x_t = \left[\begin{IEEEeqnarraybox*}[][c]{,c/c/c,}
-            1\,   &  \, 0 \,  &  -v_t/\omega_t \cos(\theta_t) + v_t/\omega_t \sin(\theta_t + \omega_t \Delta t) \\
-            0\,   &  \, 1 \,  &  -v_t/\omega_t \sin(\theta_t) + v_t/\omega_t \sin(\theta_t + \omega_t \Delta t) \\
-            0\,   &  \, 0 \,  &   1
-           \end{IEEEeqnarraybox*}\right].
-\end{equation*}
-
-Second, to generate the \textit{a posteriori} estimate, the \texttt{ekfUpdate} function calls the 
-\texttt{ekfCorrectionStep}. The \texttt{ekfCorrectionStep} in turn integrates all of the sensor 
-data it is passed to create a new model for the robot's and the obstacles' states. It does this 
-by stepping through the Extended Kalman Filter algorithm's correction step with each set of 
-sensor data. For example, \texttt{ekfCorrectionStep} will call \texttt{kinectUpdate} and pass the 
-data from the Kinect sensor to correct the positions of the obstacles. 
-
-The measurement update must calculate certain values to integrate the sensor data into the estimated
-state, such as the Kalman gain $K_t$:
-\begin{equation*}
- K_t = \widehat{\Sigma_t} H_t^T (H_t \widehat{\Sigma_t} H_t^T + Q_t)^{-1},
-\end{equation*}
-where $H_t$ is the Jacobian of each predicted sensor measurement.
-
-The Kalman gain is a weight for the updated state and covariance to depend on the predicted state 
-verses the observed state. The updated state is
-\begin{equation*}
- x_{t+1} = \hat{x_t} + K_t(z_t-h(\hat{x_t})),
-\end{equation*}
-and the updated covariance is 
-\begin{equation*}
- \Sigma_{t+1} = (I - K_t H_t) \widehat{\Sigma_t}.
-\end{equation*}
-This \textit{a posteriori} correction step is performed for each set of sensor data to get an accurate
-value for the mean and covariance of the new state. \cite{prob-robots}
-
-
-\section{Experimental Results}
-
-
-
-\begin{figure}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/1-actual-predicted-error-x.jpg}
-\caption{}
-\label{fig:1}
-\end{figure}
-
-\begin{figure}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/2-actual-predicted-error-y.jpg}
-\caption{}
-\label{fig:2}
-\end{figure}
-
-\begin{figure}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/3-actual-predicted-error-theta.jpg}
-\caption{}
-\label{fig:3}
-\end{figure}
-
-\begin{figure}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/4-pred-state-var-x.jpg}
-\caption{}
-\label{fig:4}
-\end{figure}
-
-\begin{figure}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/5-pred-state-var-y.jpg}
-\caption{}
-\label{fig:5}
-\end{figure}
-
-\begin{figure}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/6-pred-state-var-theta.jpg}
-\caption{}
-\label{fig:6}
-\end{figure}
-
-\begin{figure}[!t]%{0.35\textwidth}
-\centering
-\includegraphics[width=0.9\linewidth]{Figures/7-landmarks-over-time.jpg}
-\caption{}
-\label{fig:7}
-\end{figure}
-
-
-\section{Discussion}
-
-
-
-
-
+\subsubsection{Subsubsection Heading Here}
+Subsubsection text here.
 
 
 % An example of a floating figure using the graphicx package.
@@ -795,6 +583,7 @@ value for the mean and covariance of the new state. \cite{prob-robots}
 
 % Note that the IEEE typically puts floats only at the top, even when this
 % results in a large percentage of a column being occupied by floats.
+% However, the Computer Society has been known to put floats at the bottom.
 
 
 % An example of a double column floating figure using two subfigures.
@@ -890,6 +679,8 @@ The conclusion goes here.
 
 
 \appendices
+\section{Proof of the First Zonklar Equation}
+Appendix one text goes here.
 
 % you can choose not to have a title for an appendix
 % if you want by leaving the argument blank
@@ -898,6 +689,17 @@ Appendix two text goes here.
 
 
 % use section* for acknowledgment
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Acknowledgments}
+\else
+  % regular IEEE prefers the singular form
+  \section*{Acknowledgment}
+\fi
+
+
+The authors would like to thank...
+
 
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.
@@ -929,33 +731,11 @@ Appendix two text goes here.
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{3}
+\begin{thebibliography}{1}
 
-\bibitem{drone-response}
-C. Alex and A. Vijaychandra, ``Autonomous cloud based drone system
-for disaster response and mitigation,'' \emph{2016 International Conference 
-on Robotics and Automation for Humanitarian Applications (RAHA)}, Kollam, 
-2016, pp. 1-4.
-
-\bibitem{mapping-disaster-areas}
-A. Kleiner, C. Dornhege and S. Dali, ``Mapping disaster areas jointly: 
-RFID-Coordinated SLAM by Hurnans and Robots,'' \emph{2007 IEEE International 
-Workshop on Safety, Security and Rescue Robotics}, Rome, 2007, pp. 1-6.
-
-\bibitem{6d-mining-slam}
-A. Nuchter, H. Surmann, K. Lingemann, J. Hertzberg and S. Thrun, 
-``6D SLAM with an application in autonomous mine mapping,'' 
-\emph{Robotics and Automation, 2004. Proceedings. ICRA '04. 2004 IEEE 
-International Conference on}, 2004, pp. 1998-2003 Vol.2.
-
-\bibitem{prob-robots}
-Sebastian Thrun, Wolfram Burgard, and Dieter Fox. 2005. \emph{Probabilistic
-Robotics (Intelligent Robotics and Autonomous Agents)}. The MIT Press.
-
-\bibitem{nasa-rmc-rules}
-NASA's Ninth Annual Robotic Mining Competition Rules Rubrics, May 14-18, 
-2018, Kennedy Space Center www.nasa.gov/sites/default/files/ atoms/files/%
-2018\_rules\_rubrics\_parti.pdf
+\bibitem{IEEEhowto:kopka}
+H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
 \end{thebibliography}
 
