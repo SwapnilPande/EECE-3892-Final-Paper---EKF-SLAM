@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.18)  3 MAY 2018 07:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.18)  3 MAY 2018 07:15
 entering extended mode
 **./paper.tex
 (paper.tex
@@ -369,75 +369,76 @@ Underfull \hbox (badness 3291) in paragraph at lines 708--712
 File: Figures/1-actual-predicted-error-x.jpg Graphic file (type jpg)
 <use Figures/1-actual-predicted-error-x.jpg>
 Package pdftex.def Info: Figures/1-actual-predicted-error-x.jpg  used on input 
-line 721.
+line 734.
 (pdftex.def)             Requested size: 226.79846pt x 116.3025pt.
 <Figures/2-actual-predicted-error-y.jpg, id=23, 668.4975pt x 346.13527pt>
 File: Figures/2-actual-predicted-error-y.jpg Graphic file (type jpg)
 <use Figures/2-actual-predicted-error-y.jpg>
 Package pdftex.def Info: Figures/2-actual-predicted-error-y.jpg  used on input 
-line 728.
+line 741.
 (pdftex.def)             Requested size: 226.79846pt x 117.43091pt.
 <Figures/3-actual-predicted-error-theta.jpg, id=24, 695.59875pt x 356.83313pt>
 File: Figures/3-actual-predicted-error-theta.jpg Graphic file (type jpg)
 <use Figures/3-actual-predicted-error-theta.jpg>
 Package pdftex.def Info: Figures/3-actual-predicted-error-theta.jpg  used on in
-put line 735.
+put line 748.
 (pdftex.def)             Requested size: 226.79846pt x 116.34508pt.
 <Figures/4-pred-state-var-x.jpg, id=25, 698.35641pt x 348.41748pt>
 File: Figures/4-pred-state-var-x.jpg Graphic file (type jpg)
 <use Figures/4-pred-state-var-x.jpg>
-Package pdftex.def Info: Figures/4-pred-state-var-x.jpg  used on input line 742
+Package pdftex.def Info: Figures/4-pred-state-var-x.jpg  used on input line 755
 .
 (pdftex.def)             Requested size: 226.79846pt x 113.14926pt.
 <Figures/5-pred-state-var-y.jpg, id=26, 697.8572pt x 359.0678pt>
 File: Figures/5-pred-state-var-y.jpg Graphic file (type jpg)
 <use Figures/5-pred-state-var-y.jpg>
-Package pdftex.def Info: Figures/5-pred-state-var-y.jpg  used on input line 749
+Package pdftex.def Info: Figures/5-pred-state-var-y.jpg  used on input line 762
 .
 (pdftex.def)             Requested size: 226.79846pt x 116.69565pt.
 <Figures/6-pred-state-var-theta.jpg, id=27, 657.95813pt x 338.5279pt>
 File: Figures/6-pred-state-var-theta.jpg Graphic file (type jpg)
 <use Figures/6-pred-state-var-theta.jpg>
 Package pdftex.def Info: Figures/6-pred-state-var-theta.jpg  used on input line
- 756.
+ 769.
 (pdftex.def)             Requested size: 226.79846pt x 116.68893pt.
 <Figures/7-landmarks-over-time.jpg, id=28, 698.35641pt x 348.41748pt>
 File: Figures/7-landmarks-over-time.jpg Graphic file (type jpg)
 <use Figures/7-landmarks-over-time.jpg>
 Package pdftex.def Info: Figures/7-landmarks-over-time.jpg  used on input line 
-763.
+776.
 (pdftex.def)             Requested size: 226.79846pt x 113.14926pt.
-[3 <./Figures/1-actual-predicted-error-x.jpg> <./Figures/2-actual-predicted-err
-or-y.jpg>] [4 <./Figures/3-actual-predicted-error-theta.jpg> <./Figures/4-pred-
+[3] [4 <./Figures/1-actual-predicted-error-x.jpg> <./Figures/2-actual-predicted
+-error-y.jpg> <./Figures/3-actual-predicted-error-theta.jpg> <./Figures/4-pred-
 state-var-x.jpg> <./Figures/5-pred-state-var-y.jpg> <./Figures/6-pred-state-var
--theta.jpg> <./Figures/7-landmarks-over-time.jpg>] (paper.aux) ) 
+-theta.jpg> <./Figures/7-landmarks-over-time.jpg>] [5
+
+] (paper.aux) ) 
 Here is how much of TeX's memory you used:
- 2954 strings out of 493303
- 47727 string characters out of 3128914
- 116573 words of memory out of 3000000
+ 2953 strings out of 493303
+ 47721 string characters out of 3128914
+ 117573 words of memory out of 3000000
  6476 multiletter control sequences out of 15000+200000
- 41685 words of font info for 74 fonts, out of 3000000 for 9000
+ 40578 words of font info for 73 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 41i,9n,28p,274b,291s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Swapn
-il/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/Swap
-nil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
-><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi7.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Swapnil/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Swapnil/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
-rs/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-y7.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/cour
-ier/ucrr8a.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-urw/times/utmb8a.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/urw/times/utmbi8a.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (4 pages, 2243155 bytes).
+ 41i,9n,25p,274b,289s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dv
+ips/base/8r.enc}<C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmex10.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Swapnil/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Swapnil/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/U
+sers/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mr7.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Swapnil/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Swapnil/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Swapnil/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/Swapnil/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Swapn
+il/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (5 pages, 2244643 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

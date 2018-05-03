@@ -569,7 +569,7 @@ achievable through the application of a SLAM algorithm.
 \section{Methods and Procedures}
 
 The simulation for the EKF SLAM algorithm is demonstrated through an abstract robot which 
-can sense the two-dimensional environment through multiple types of sensors. To 
+can sense the two-dimensional environment through multiple types of sensors. The environment consisted of a fiducial marker placed at the origin and three obstacles randomly placed in the obstacle zone. To 
 simulate the NASA RMC robot, the robot can sense the state of itself and the environment 
 obstacles through multiple abstracted types of sensors, including:
 
@@ -719,7 +719,7 @@ algorithm was executed using sensor models for the Microsoft Kinect and gyro. Fi
 present the error between the actual and estimated pose of the robot. The estimated $x$ and $y$ positions of the 
 robot did not converge to the actual positions, with errors ranging from $-1.5$ meters to $1$ meter. However, 
 the estimated angular orientation of the robot closely matched the actual angular orientation with the 
-difference staying within $0.2$ radians. This is likely due to the high accuracy of the gyroscope sensor. 
+difference staying within $0.2$ radians. This is likely due to the low standard deviation of the gyroscope sensor. 
 Figures \ref{fig:4}-\ref{fig:6} present the variances for the estimate pose of the robot. The figures clearly demonstrate 
 the effects of the prediction and correction step on the variance. The variance for each pose value 
 increases during the motion model update and then decreases in the correction step with the sensor 
