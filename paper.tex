@@ -587,8 +587,8 @@ the EKF's entire algorithmic complexity. The \textit{a priori} and the \textit{a
 performed through several of the \texttt{EKFSlammer}'s class methods. 
 
 \texttt{EKFSlammer} stores the robot's and environment's state $x_t$ in a \texttt{VectorXd}. The
-perceived position and orientation of the robot, as well as the location of the obstacles in the map, 
-can be expressed informally as 
+perceived position and orientation of the robot, as well as the location of the landmarks in the map, 
+can be expressed as 
 \begin{equation*}
  x_t = \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
         \vec{s} \\
@@ -599,39 +599,14 @@ can be expressed informally as
         \end{IEEEeqnarraybox*}\right],
 \end{equation*}
 where $\vec{s}$ is the robot's location with respect to the Aruco Marker (the arbitrarily-defined
-origin) and $\vec{m}_i$ is the location of the $i$\textsuperscript{th} obstacle. The vectors represented
-in code for measurement updates are the Kinect measurement vector and the gyroscope measurement vector.
-The Kinect senses all obstacles in the environment; therefore, its measurement vector for all $i$ obstacles 
-is expressed as
-\begin{equation*}
- z_{t,K} = \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
-           r_1 \\
-           \theta_1 \\
-           r_2 \\
-           \theta_2 \\
-           \vdots \\
-           r_i \\
-           \theta_i
-           \end{IEEEeqnarraybox*}\right] + \vec{\epsilon_t},
-\end{equation*}
-and the gyroscope measurement vector can be expressed as 
-\begin{equation*}
- z_{t,g} = \omega_t + \epsilon_t,
-\end{equation*}
-where $\omega_t$ is the angular velocity of the robot, and $\vec{\epsilon_t}$ and $\epsilon_t$ are the 
-normally-distributed noise factors for each sensor.
+origin) and $\vec{m}_i$ is the location of the $i$\textsuperscript{th} landmark.
 
-To step through a frame with a set timestep, the \texttt{ekfUpdate()} function is called. Here, the main 
-method passes its control input, the perceived obstacles (from the Kinect observation), the measured 
-acceleration, the measured encoder values, the measured gyroscope values, and the measured Aruco 
-Marker location. \texttt{ekfUpdate} then calls all other relevant EKF functions. 
 
 First, to generate the \textit{a priori} estimate, the \texttt{motionModelUpdate()} method is called by 
 \texttt{ekfUpdate}. Its parameters are the timestep for the robot and its control parameters, in 
 the form of a forward velocity and an angular velocity (i.e. the \texttt{controlIn} struct; see 
-\texttt{Utils.h}). The \texttt{motionModelUpdate} will recalculate the estimated state of the 
-robot, given the control input and given the known uncertainties of the robot's actuators 
-(i.e. the robot's wheels, since this robot can only move). 
+\texttt{Utils.h}). The \texttt{motionModelUpdate} calculates the estimated state of the 
+robot, given the control input and the known uncertainties of the robot's actuators. 
 
 The motion model update for the \textit{a priori} estimate is defined with the following relation, given
 the robot's control sequence straight-line velocity $v_t$ and angular velocity $\omega_t$:
@@ -699,6 +674,35 @@ and the updated covariance is
 \end{equation*}
 This \textit{a posteriori} correction step is performed for each set of sensor data to get an accurate
 value for the mean and covariance of the new state. \cite{prob-robots}
+
+
+ The vectors represented
+in code for measurement updates are the Kinect measurement vector and the gyroscope measurement vector.
+The Kinect senses all obstacles in the environment; therefore, its measurement vector for all $i$ obstacles 
+is expressed as
+\begin{equation*}
+ z_{t,K} = \left[\begin{IEEEeqnarraybox*}[][c]{,c,}
+           r_1 \\
+           \theta_1 \\
+           r_2 \\
+           \theta_2 \\
+           \vdots \\
+           r_i \\
+           \theta_i
+           \end{IEEEeqnarraybox*}\right] + \vec{\epsilon_t},
+\end{equation*}
+and the gyroscope measurement vector can be expressed as 
+\begin{equation*}
+ z_{t,g} = \omega_t + \epsilon_t,
+\end{equation*}
+where $\omega_t$ is the angular velocity of the robot, and $\vec{\epsilon_t}$ and $\epsilon_t$ are the 
+normally-distributed noise factors for each sensor.
+
+To step through a frame with a set timestep, the \texttt{ekfUpdate()} function is called. Here, the main 
+method passes its control input, the perceived obstacles (from the Kinect observation), the measured 
+acceleration, the measured encoder values, the measured gyroscope values, and the measured Aruco 
+Marker location. \texttt{ekfUpdate} then calls all other relevant EKF functions. 
+
 
 
 \section{Experimental Results}

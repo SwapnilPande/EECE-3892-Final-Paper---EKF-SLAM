@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.18)  3 MAY 2018 06:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.18)  3 MAY 2018 07:06
 entering extended mode
 **./paper.tex
 (paper.tex
@@ -333,82 +333,79 @@ Underfull \hbox (badness 1910) in paragraph at lines 583--590
  []
 
 
-Underfull \vbox (badness 1092) has occurred while \output is active []
-
- [2 <./Figures/playing-field.png>]
-Underfull \hbox (badness 3291) in paragraph at lines 631--635
-[]\OT1/ptm/m/n/10 To step through a frame with a set timestep, the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 636--642
+Underfull \hbox (badness 10000) in paragraph at lines 612--617
 []\OT1/ptm/m/n/10 First, to gen-er-ate the \OT1/ptm/m/it/10 a pri-ori \OT1/ptm/
 m/n/10 es-ti-mate, the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 636--642
+Underfull \hbox (badness 10000) in paragraph at lines 612--617
 \OT1/pcr/m/n/10 motionModelUpdate() \OT1/ptm/m/n/10 method is called by
  []
 
 
-Underfull \hbox (badness 3679) in paragraph at lines 636--642
+Underfull \hbox (badness 3679) in paragraph at lines 612--617
 \OT1/pcr/m/n/10 ekfUpdate\OT1/ptm/m/n/10 . Its pa-ram-e-ters are the timestep f
 or the
  []
 
-
-Overfull \hbox (2.72264pt too wide) detected at line 661
+[2 <./Figures/playing-field.png>]
+Overfull \hbox (2.72264pt too wide) detected at line 636
 [] \OT1/cmr/m/n/10 = [] + []
  []
 
 
-Underfull \hbox (badness 5189) in paragraph at lines 684--690
+Underfull \hbox (badness 5189) in paragraph at lines 659--665
 []\OT1/ptm/m/n/10 Second, to gen-er-ate the \OT1/ptm/m/it/10 a pos-te-ri-ori \O
 T1/ptm/m/n/10 es-ti-mate, the
+ []
+
+
+Underfull \hbox (badness 3291) in paragraph at lines 708--712
+[]\OT1/ptm/m/n/10 To step through a frame with a set timestep, the
  []
 
 <Figures/1-actual-predicted-error-x.jpg, id=22, 682.38095pt x 349.93895pt>
 File: Figures/1-actual-predicted-error-x.jpg Graphic file (type jpg)
 <use Figures/1-actual-predicted-error-x.jpg>
 Package pdftex.def Info: Figures/1-actual-predicted-error-x.jpg  used on input 
-line 717.
+line 721.
 (pdftex.def)             Requested size: 226.79846pt x 116.3025pt.
 <Figures/2-actual-predicted-error-y.jpg, id=23, 668.4975pt x 346.13527pt>
 File: Figures/2-actual-predicted-error-y.jpg Graphic file (type jpg)
 <use Figures/2-actual-predicted-error-y.jpg>
 Package pdftex.def Info: Figures/2-actual-predicted-error-y.jpg  used on input 
-line 724.
+line 728.
 (pdftex.def)             Requested size: 226.79846pt x 117.43091pt.
 <Figures/3-actual-predicted-error-theta.jpg, id=24, 695.59875pt x 356.83313pt>
 File: Figures/3-actual-predicted-error-theta.jpg Graphic file (type jpg)
 <use Figures/3-actual-predicted-error-theta.jpg>
 Package pdftex.def Info: Figures/3-actual-predicted-error-theta.jpg  used on in
-put line 731.
+put line 735.
 (pdftex.def)             Requested size: 226.79846pt x 116.34508pt.
 <Figures/4-pred-state-var-x.jpg, id=25, 698.35641pt x 348.41748pt>
 File: Figures/4-pred-state-var-x.jpg Graphic file (type jpg)
 <use Figures/4-pred-state-var-x.jpg>
-Package pdftex.def Info: Figures/4-pred-state-var-x.jpg  used on input line 738
+Package pdftex.def Info: Figures/4-pred-state-var-x.jpg  used on input line 742
 .
 (pdftex.def)             Requested size: 226.79846pt x 113.14926pt.
 <Figures/5-pred-state-var-y.jpg, id=26, 697.8572pt x 359.0678pt>
 File: Figures/5-pred-state-var-y.jpg Graphic file (type jpg)
 <use Figures/5-pred-state-var-y.jpg>
-Package pdftex.def Info: Figures/5-pred-state-var-y.jpg  used on input line 745
+Package pdftex.def Info: Figures/5-pred-state-var-y.jpg  used on input line 749
 .
 (pdftex.def)             Requested size: 226.79846pt x 116.69565pt.
 <Figures/6-pred-state-var-theta.jpg, id=27, 657.95813pt x 338.5279pt>
 File: Figures/6-pred-state-var-theta.jpg Graphic file (type jpg)
 <use Figures/6-pred-state-var-theta.jpg>
 Package pdftex.def Info: Figures/6-pred-state-var-theta.jpg  used on input line
- 752.
+ 756.
 (pdftex.def)             Requested size: 226.79846pt x 116.68893pt.
 <Figures/7-landmarks-over-time.jpg, id=28, 698.35641pt x 348.41748pt>
 File: Figures/7-landmarks-over-time.jpg Graphic file (type jpg)
 <use Figures/7-landmarks-over-time.jpg>
 Package pdftex.def Info: Figures/7-landmarks-over-time.jpg  used on input line 
-759.
+763.
 (pdftex.def)             Requested size: 226.79846pt x 113.14926pt.
 [3 <./Figures/1-actual-predicted-error-x.jpg> <./Figures/2-actual-predicted-err
 or-y.jpg>] [4 <./Figures/3-actual-predicted-error-theta.jpg> <./Figures/4-pred-
@@ -438,7 +435,7 @@ urw/times/utmb8a.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9/fonts/
 type1/urw/times/utmbi8a.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKTeX 2.9
 /fonts/type1/urw/times/utmr8a.pfb><C:/Users/Swapnil/AppData/Local/Programs/MiKT
 eX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (4 pages, 2243159 bytes).
+Output written on paper.pdf (4 pages, 2243155 bytes).
 PDF statistics:
  74 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
