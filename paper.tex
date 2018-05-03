@@ -714,7 +714,20 @@ Marker location. \texttt{ekfUpdate} then calls all other relevant EKF functions.
 
 \section{Experimental Results}
 
-
+The EKF SLAM algorithm was unsuccessful in accurately localizing the robot and landmarks. The 
+algorithm was executed using sensor models for the Microsoft Kinect and gyro. Figures \ref{fig:1}-\ref{fig:3}
+present the error between the actual and estimated pose of the robot. The estimated $x$ and $y$ positions of the 
+robot did not converge to the actual positions, with errors ranging from $-1.5$ meters to $1$ meter. However, 
+the estimated angular orientation of the robot closely matched the actual angular orientation with the 
+difference staying within $0.2$ radians. This is likely due to the high accuracy of the gyroscope sensor. 
+Figures \ref{fig:4}-\ref{fig:6} present the variances for the estimate pose of the robot. The figures clearly demonstrate 
+the effects of the prediction and correction step on the variance. The variance for each pose value 
+increases during the motion model update and then decreases in the correction step with the sensor 
+model updates. This accounts for the sporadic appearance of the data. However, the average variance 
+reduces over time and converges to a limit. Figure \ref{fig:7} shows the number of unique landmarks stored in the 
+map built by the algorithm. Despite only three landmarks being present in the environment, the algorithm 
+identified 254 landmarks, indicating significant errors in data association between new observations and 
+previous observations.
 
 \begin{figure}[!t]%{0.35\textwidth}
 \centering
@@ -897,8 +910,19 @@ The conclusion goes here.
 
 % you can choose not to have a title for an appendix
 % if you want by leaving the argument blank
-\section{}
-Appendix two text goes here.
+\section{Description of Attached C++ Files}
+\begin{itemize}
+ \item \texttt{EKFSlammer.h} --- Defines all prediction step and correction step methods for the robot
+ and obstacles, given all types of sensor inputs. 
+ \item \texttt{EKFSlammer.cpp} --- Implements all the methods defined in \texttt{EKFSlammer.h}.
+ \item \texttt{Robot.h} --- Defines and implements the conceptual robot and declares functions for 
+  extracting (noisy) sensor measurements from the robot's defined sensors.
+ \item \texttt{main.cpp} --- Creates instances of the \texttt{Robot} and the \texttt{EKFSlammer} and extracts data from
+  their actual (\texttt{Robot}) results and their calculated (\texttt{EKFSlammer}) results.
+ \item \texttt{Utils.h} --- Defines the \texttt{controlIn} struct, which is used to input a control to the \texttt{Robot}
+  and \texttt{EKFSlammer} instances.
+\end{itemize}
+
 
 
 % use section* for acknowledgment
@@ -974,34 +998,6 @@ NASA's Ninth Annual Robotic Mining Competition Rules Rubrics, May 14-18,
 %\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}{Michael Shell}
-Biography text here.
-\end{IEEEbiography}
-
-% if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
-
-% insert where needed to balance the two columns on the last page with
-% biographies
-%\newpage
-
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
-
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
-
-%\vfill
-
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
 
 
 
